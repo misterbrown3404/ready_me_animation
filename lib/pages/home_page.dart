@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final O3DController controller = O3DController(),
       controller2 = O3DController();
   FocusNode focusNode = FocusNode();
-  List<String>? availableVariants;
-  List<String>? availableAnimations;
+
 
   @override
   void didChangeDependencies() {
@@ -126,9 +124,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Text('Controller 1 Keys:'),
                           Text('W: Run'),
-                          Text('S: Punch'),
-                          Text('A: Yes'),
-                          Text('D: No'),
+                          Text('S: Walk'),
+                          Text('A: Left'),
+                          Text('D: Right'),
                         ],
                       ),
                     ),
@@ -140,9 +138,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Text('Controller 2 Keys:'),
                           Text('Arrow Up: Jump'),
-                          Text('Arrow Down: Dance'),
-                          Text('Arrow Left: Idle'),
-                          Text('Arrow Right: Death'),
+                          Text('Arrow Down: Static'),
+                          Text('Arrow Left: Left'),
+                          Text('Arrow Right: Right'),
                         ],
                       ),
                     ),
