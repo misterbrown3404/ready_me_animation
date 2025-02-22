@@ -1,86 +1,81 @@
-#READY_ME
+# READY_ME
 This project is a Flutter-based application that demonstrates how to control 3D animated models using both keyboard inputs on desktop platforms and on-screen buttons on mobile platforms. The application utilizes the o3d package to render 3D models and allows users to interact with the models through various controls.
 
-##Features
--3D Model Rendering: Render expressive 3D robot models using the o3d package.
+## Features
+- 3D Model Rendering: Render expressive 3D robot models using the o3d package.
 
--Animation Control: Control animations using keyboard inputs on desktop platforms and on-screen buttons on mobile platforms.
+- Animation Control: Control animations using keyboard inputs on desktop platforms and on-screen buttons on mobile platforms.
 
--Platform-Specific UI: Display keyboard guides for desktop platforms and game controllers for mobile platforms.
+- Platform-Specific UI: Display keyboard guides for desktop platforms and game controllers for mobile platforms.
 
--Camera Controls: Adjust camera orbit and target for better viewing angles.
+- Camera Controls: Adjust camera orbit and target for better viewing angles.
 
--Dynamic Model Reloading: Reload models dynamically to reset animations and states.
+- Dynamic Model Reloading: Reload models dynamically to reset animations and states.
 
 
 
-##Getting Started
-##Prerequisites
-##Flutter SDK: Install Flutter
+## Getting Started
+## Prerequisites
+## Flutter SDK: Install Flutter
 
-##Installation
-Clone the repository:
+## Installation
+- Clone the repository:
+- git clone https://github.com/misterbrown3404/ready_me_animation.git cd robot-animation-controller
 
-sh
-git clone https://github.com/yourusername/robot-animation-controller.git
-cd robot-animation-controller
-Install dependencies:
+- Install dependencies:
+- flutter pub get
 
-sh
-flutter pub get
-Run the app:
+- Run the app:
+- flutter run
 
-sh
-flutter run
+## Usage
 
-##Usage
+## Desktop Platforms
+- Use the following keyboard keys to control the animations:
 
--Desktop Platforms
-Use the following keyboard keys to control the animations:
+- W: Run
 
-W: Run
+- S: Punch
 
-S: Punch
+- A: Yes
 
-A: Yes
+- D: No
 
-D: No
+- Arrow Up: Jump
 
-Arrow Up: Jump
+- Arrow Down: Dance
 
-Arrow Down: Dance
+- Arrow Left: Idle
 
-Arrow Left: Idle
+- Arrow Right: Death
 
-Arrow Right: Death
+## Mobile Platforms
+- Use the on-screen game controllers to control the animations.
 
-##Mobile Platforms
-Use the on-screen game controllers to control the animations.
+## Code Structure
+- main.dart: Entry point of the application.
 
-Code Structure
-main.dart: Entry point of the application.
+- MyHomePage.dart: Main widget that sets up the UI and handles input.
 
-MyHomePage.dart: Main widget that sets up the UI and handles input.
+- GameController.dart: Custom widget that displays on-screen buttons for mobile platforms.
 
-GameController.dart: Custom widget that displays on-screen buttons for mobile platforms.
+- o3d_controller.dart: Controller for managing 3D model animations.
 
-o3d_controller.dart: Controller for managing 3D model animations.
-
-##Contributing
+## Contributing
 Contributions are welcome! Please follow these steps:
 
-Fork the repository.
+- Fork the repository.
 
-Create a new branch (git checkout -b feature-branch).
+- Create a new branch (git checkout -b feature-branch).
 
-Make your changes and commit (git commit -m 'Add new feature').
+- Make your changes and commit (git commit -m 'Add new feature').
 
-Push to the branch (git push origin feature-branch).
+- Push to the branch (git push origin feature-branch).
 
-Open a Pull Request.
+- Open a Pull Request.
 
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+- License
+## This project is licensed under the MIT License - see the LICENSE file for details.
 
-##Acknowledgments
+## Acknowledgments
 Thanks to the Flutter and o3d package communities for their amazing tools and support.
