@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:o3d/o3d.dart';
@@ -16,6 +18,8 @@ class _MyHomePageState extends State<MyHomePage> {
   final O3DController controller = O3DController(),
       controller2 = O3DController();
   FocusNode focusNode = FocusNode();
+  List<String>? availableVariants;
+  List<String>? availableAnimations;
 
   @override
   void didChangeDependencies() {
@@ -33,33 +37,33 @@ class _MyHomePageState extends State<MyHomePage> {
     if (event is KeyDownEvent) {
       switch (event.logicalKey.keyLabel) {
         case 'W':
-          controller.animationName = 'Running';
+          controller.animationName = 'Rig|run';
           break;
         case 'S':
-          controller.animationName = 'Punch';
+          controller.animationName = 'Rig|walk';
           break;
         case 'A':
-          controller.animationName = 'Yes';
+          controller.animationName = 'Rig|step_left';
           break;
         case 'D':
-          controller.animationName = 'No';
+          controller.animationName = 'Rig|step_right';
           break;
         case 'Arrow Up':
-          controller2.animationName = 'Jump';
+          controller2.animationName = 'Rig|jump';
           break;
         case 'Arrow Down':
-          controller2.animationName = 'Dance';
+          controller2.animationName = 'Rig|Static_Pose';
           break;
         case 'Arrow Left':
-          controller2.animationName = 'Idle';
+          controller2.animationName = 'Rig|turning_left';
           break;
         case 'Arrow Right':
-          controller2.animationName = 'Death';
+          controller2.animationName = 'Rig|turning_right';
           break;
         default:
           break;
       }
-      setState(() {}); 
+      setState(() {});
     }
   }
 
@@ -83,8 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Positioned.fill(
                     child: Image.asset(
-                      'assets/background.jpeg', 
-                      fit: BoxFit.cover, 
+                      'assets/background.jpeg',
+                      fit: BoxFit.cover,
                     ),
                   ),
                   Row(
@@ -94,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: O3D(
                           key: widgetKey,
                           controller: controller,
-                          src: 'assets/RobotExpressive.glb',
+                          src: 'assets/man.glb',
                           autoPlay: true,
                           animationName: 'Idle',
                           cameraControls: false,
@@ -105,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: O3D(
                           key: widgetKey,
                           controller: controller2,
-                          src: 'assets/RobotExpressive.glb',
+                          src: 'assets/man.glb',
                           autoPlay: true,
                           animationName: 'Idle',
                           cameraControls: false,
@@ -113,84 +117,81 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
-                  if (isDesktop)
-                    ...[
-                      const Positioned(
-                        bottom: 20,
-                        left: 30,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Controller 1 Keys:'),
-                            Text('W: Run'),
-                            Text('S: Punch'),
-                            Text('A: Yes'),
-                            Text('D: No'),
-                          ],
-                        ),
+                  if (isDesktop) ...[
+                    const Positioned(
+                      bottom: 20,
+                      left: 30,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Controller 1 Keys:'),
+                          Text('W: Run'),
+                          Text('S: Punch'),
+                          Text('A: Yes'),
+                          Text('D: No'),
+                        ],
                       ),
-                      const Positioned(
-                        bottom: 20,
-                        right: 30,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Controller 2 Keys:'),
-                            Text('Arrow Up: Jump'),
-                            Text('Arrow Down: Dance'),
-                            Text('Arrow Left: Idle'),
-                            Text('Arrow Right: Death'),
-                          ],
-                        ),
+                    ),
+                    const Positioned(
+                      bottom: 20,
+                      right: 30,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Controller 2 Keys:'),
+                          Text('Arrow Up: Jump'),
+                          Text('Arrow Down: Dance'),
+                          Text('Arrow Left: Idle'),
+                          Text('Arrow Right: Death'),
+                        ],
                       ),
-                    ]
-                  else
-                    ...[
-                      Positioned(
-                        bottom: 20,
-                        left: 30,
-                        child: GameController(
-                          onUpPressed: () {
-                            controller.animationName = 'Running';
-                          },
-                          onDownPressed: () {
-                            controller.animationName = 'Punch';
-                          },
-                          onLeftPressed: () {
-                            controller.animationName = 'Yes';
-                          },
-                          onRightPressed: () {
-                            controller.animationName = 'No';
-                          },
-                          upText: 'Run',
-                          downText: 'Punch',
-                          leftText: 'Yes',
-                          rightText: 'No',
-                        ),
+                    ),
+                  ] else ...[
+                    Positioned(
+                      bottom: 20,
+                      left: 30,
+                      child: GameController(
+                        onUpPressed: () {
+                          controller.animationName = 'Rig|run';
+                        },
+                        onDownPressed: () {
+                          controller.animationName = 'Rig|walk';
+                        },
+                        onLeftPressed: () {
+                          controller.animationName = 'Rig|step_left';
+                        },
+                        onRightPressed: () {
+                          controller.animationName = 'Rig|step_right';
+                        },
+                        upText: 'Run',
+                        downText: 'Walk',
+                        leftText: 'Left',
+                        rightText: 'Right',
                       ),
-                      Positioned(
-                        bottom: 20,
-                        right: 30,
-                        child: GameController(
-                          onUpPressed: () {
-                            controller2.animationName = 'Jump';
-                          },
-                          onDownPressed: () {
-                            controller2.animationName = 'Dance';
-                          },
-                          onLeftPressed: () {
-                            controller2.animationName = 'Idle';
-                          },
-                          onRightPressed: () {
-                            controller2.animationName = 'Death';
-                          },
-                          upText: 'Jump',
-                          downText: 'Dance',
-                          leftText: 'Idle',
-                          rightText: 'Death',
-                        ),
+                    ),
+                    Positioned(
+                      bottom: 20,
+                      right: 30,
+                      child: GameController(
+                        onUpPressed: () {
+                          controller2.animationName = 'Rig|jump';
+                        },
+                        onDownPressed: () {
+                          controller2.animationName = 'Rig|Static_Pose';
+                        },
+                        onLeftPressed: () {
+                          controller2.animationName = 'Rig|turning_left';
+                        },
+                        onRightPressed: () {
+                          controller2.animationName = 'Rig|turning_right';
+                        },
+                        upText: 'Jump',
+                        downText: 'Static',
+                        leftText: 'left',
+                        rightText: 'right',
                       ),
-                    ],
+                    ),
+                  ],
                 ],
               ),
             ),
